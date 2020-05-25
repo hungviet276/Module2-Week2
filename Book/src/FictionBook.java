@@ -1,4 +1,6 @@
-public class FictionBook extends  Book {
+import java.io.Serializable;
+
+public class FictionBook extends  Book implements Serializable {
     private String category;
 
     public FictionBook() {
@@ -19,5 +21,12 @@ public class FictionBook extends  Book {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "FictionBook{" +
+                "category='" + getCategory() + '\'' +
+                '}';
     }
 }

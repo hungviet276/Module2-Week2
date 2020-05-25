@@ -1,4 +1,6 @@
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
 
     private String name;
     private double price;
@@ -31,4 +33,11 @@ public class Book {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

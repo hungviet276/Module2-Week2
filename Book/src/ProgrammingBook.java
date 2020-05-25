@@ -1,4 +1,6 @@
-public class ProgrammingBook extends Book {
+import java.io.Serializable;
+
+public class ProgrammingBook extends Book implements Serializable {
     private String language;
     private String framework;
 
@@ -30,5 +32,13 @@ public class ProgrammingBook extends Book {
 
     public void setFramework(String framework) {
         this.framework = framework;
+    }
+
+    @Override
+    public String toString() {
+        return "ProgrammingBook{" +
+                "language='" + language + '\'' +
+                ", framework='" + framework + '\'' +
+                '}';
     }
 }

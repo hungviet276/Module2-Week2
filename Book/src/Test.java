@@ -1,3 +1,9 @@
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Test {
     public static void main(String[] args) {
         ProgrammingBook programmingBook1 = new ProgrammingBook("hoc cach hoc", 250000, "python", "Laravel");
@@ -31,6 +37,61 @@ public class Test {
             }
         }
         System.out.println("So sach Java la "+countBooks);
+
+        //Tao mang FictionBook va ArrayBook
+        ArrayList<ProgrammingBook> listProgrammingBook = new ArrayList<>();
+        ArrayList<FictionBook> listFictionBook = new ArrayList<>();
+      listProgrammingBook.add(programmingBook1);
+      listProgrammingBook.add(programmingBook2);
+      listProgrammingBook.add(programmingBook3);
+      listProgrammingBook.add(programmingBook4);
+      listProgrammingBook.add(programmingBook5);
+
+//      listFictionBook.add(fictionBook1);
+//      listFictionBook.add(fictionBook2);
+//      listFictionBook.add(fictionBook3);
+//      listFictionBook.add(fictionBook4);
+//      listFictionBook.add(fictionBook5);
+
+        // Write Book
+        WriteBook writeProgrammingBook = new WriteBook(listProgrammingBook,"programmingBook.txt");
+//        WriteBook writeFictionBook = new WriteBook(listFictionBook,"fictionBook.txt");
+        try {
+            writeProgrammingBook.start();
+            writeProgrammingBook.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+//        writeFictionBook.start();
+
+//        try {
+//            ObjectInputStream ois=new ObjectInputStream(new FileInputStream("fictionBook.txt"));
+//            FictionBook fb=(FictionBook)ois.readObject();
+//            System.out.println(fb.toString());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+        // Read Book
+        ArrayList<ProgrammingBook> arrayProgrammingBook = new ArrayList<>();
+//        ArrayList<FictionBook> arrayFictionBook = new ArrayList<>();
+        ReadBook<ProgrammingBook> readProgrammingBook = new ReadBook(arrayProgrammingBook,"programmingBook.txt");
+//        ReadBook<FictionBook> readFictionBook = new ReadBook(arrayFictionBook,"fictionBook.txt");
+        readProgrammingBook.start();
+        ArrayList<ProgrammingBook> myList= readProgrammingBook.getList();
+        myList.forEach(k -> System.out.println(k));
+//        readFictionBook.start();
+//        for (Book programmingBook:arrayProgrammingBook
+//             ) {
+//            System.out.println(((ProgrammingBook)programmingBook).toString());
+//
+//        }
+//        for (Book fictionBook:arrayFictionBook
+//             ) {
+//            System.out.println(fictionBook.toString());
+//
+//        }
 
 
     }
